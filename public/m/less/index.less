@@ -1,0 +1,110 @@
+@import 'base.less';
+
+// 主页导航条的样式
+#nav{
+    padding: .1rem;
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+        li{
+            width: 33.33%;
+            a{
+                display: block;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+// 广告区域
+#banner {
+    display: flex;
+    padding: 0.1rem;
+    .banner-left{
+        background-color: yellowgreen;
+        flex: 2;
+        height: 2.4rem;
+        width: 2.3667rem;
+        a{
+            font-size: 0;
+            display: block;
+            img{
+                width: 50%;
+            }
+        }
+    }
+    .banner-right{
+        background-color: red;
+        flex: 1;
+        height: 2.4rem;
+        width: 1.1833rem;
+        a{
+            display: block;
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
+
+// 品牌专区
+#brand{
+     padding: 0.1rem;
+     .title{
+         a{
+             display: block;
+             img{
+                 width: 100%;
+             }
+         }
+     }
+     .content{
+         ul{
+             display: flex;
+             flex-wrap: wrap; 
+             li{
+                 width: 25%;
+                 a{
+                     display: block;
+                     img{
+                         width: 100%; 
+                     }
+                 }
+             }
+         }
+     }
+}
+
+#sport,#women,#man{
+        padding: 0.1rem;
+        .title{
+            a{
+                display: block;
+                img{
+                    width: 100%;
+                }
+            }
+        }   
+        .content{
+            ul{
+                display: flex;
+                flex-wrap: wrap;
+                li{
+                    width: 50%;
+                    a.product{
+                        margin-top: 10px;
+                        background-color: #fff;
+                        text-align: center;
+                        display: block;
+                        box-shadow: 0px 0px 2px hotpink;
+                        overflow: hidden;
+                        .product-img{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }   
+   }
