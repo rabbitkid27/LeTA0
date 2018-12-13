@@ -87,3 +87,56 @@ body {
   margin: .025rem;
   display: block;
 }
+body {
+  background-color: #ccc;
+}
+/* 分类页面的主体样式 */
+#main {
+  display: flex;
+}
+#main .category-left {
+  width: .8rem;
+  position: relative;
+}
+#main .category-left ul {
+  min-height: 5.78rem;
+}
+#main .category-left ul li a {
+  display: block;
+  color: #666;
+  height: .45rem;
+  text-align: center;
+  line-height: .45rem;
+  font-size: .14rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+#main .category-left ul li.active a {
+  background-color: #ccc;
+  color: #006699;
+}
+#main .category-right {
+  flex: 1;
+  position: relative;
+}
+#main .category-right ul {
+  min-height: 5.78rem;
+  align-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+#main .category-right ul li {
+  width: 33.33%;
+}
+#main .category-right ul li a {
+  display: block;
+  background-color: #fff;
+}
+#main .category-right ul li a img {
+  width: 100%;
+}
+#main .category-right ul li a p {
+  font-size: .14rem;
+  text-align: center;
+}

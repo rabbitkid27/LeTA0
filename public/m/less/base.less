@@ -27,6 +27,7 @@ body{
     padding-left: .45rem;
     padding-right: .45rem;
     height: .45rem;
+    width: 100vw;
     color: #fff;
     position: fixed;
     top: 0;
@@ -39,6 +40,16 @@ body{
         line-height: .45rem;
         font-weight: normal;
     }
+    form{
+        width: 100%;
+        padding-top: 0.05rem;
+        input{
+            background-color: #fff;
+            text-align: left;
+            margin-bottom: 0;
+            font-size: .14rem;
+        }
+    }
     a{
         width: .45rem;
         height: .45rem;
@@ -46,8 +57,13 @@ body{
         text-align: center;
         position: absolute;
         top: 0;
-        right: 0;
         color: #fff;
+        &:first-of-type{
+            left: 0;
+        }
+        &:last-of-type{
+            right: 0;
+        }
     }
 }
 
@@ -62,13 +78,14 @@ body{
     ul{
         display: flex;
         li{
-            width: 25%;
+            width: 25vw;
             a{
                 display: block;
                 color: #fff;
-                padding: .085rem;
+                padding: .065rem;
                 text-align: center;
                 span{
+                    margin: .025rem;
                     display: block
                 }
             }

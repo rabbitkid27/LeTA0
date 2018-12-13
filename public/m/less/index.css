@@ -9,6 +9,14 @@ img {
   /* 解决图图片与文字 要水平居中会有3px的问题 */
   vertical-align: middle;
 }
+body {
+  padding: 0.45rem 0;
+  height: 100vh;
+}
+#main {
+  position: relative;
+  height: 100%;
+}
 #header {
   background-color: #006699;
   display: flex;
@@ -38,6 +46,30 @@ img {
   right: 0;
   color: #fff;
 }
+#footer {
+  width: 100vw;
+  height: .45rem;
+  background-color: #006699;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+}
+#footer ul {
+  display: flex;
+}
+#footer ul li {
+  width: 25%;
+}
+#footer ul li a {
+  display: block;
+  color: #fff;
+  padding: .085rem;
+  text-align: center;
+}
+#footer ul li a span {
+  display: block;
+}
 #nav {
   padding: .1rem;
 }
@@ -59,7 +91,6 @@ img {
   padding: 0.1rem;
 }
 #banner .banner-left {
-  background-color: yellowgreen;
   flex: 2;
   height: 2.4rem;
   width: 2.3667rem;
@@ -72,7 +103,6 @@ img {
   width: 50%;
 }
 #banner .banner-right {
-  background-color: red;
   flex: 1;
   height: 2.4rem;
   width: 1.1833rem;

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="Ie=edge">
+    <title>Mobile client Category</title>
+    <link rel="stylesheet" href="lib/mui/css/mui.css">
+    <link rel="stylesheet" href="lib/fontAwesome/css/font-awesome.css">
+    <link rel="stylesheet/less" href="less/category.less">
+    <script src="lib/less/less.js"></script>
+    <script src="js/rem.js"></script>
+
+</head>
+
+<body>
+    <!-- 头部区域 -->
+    <header id="header">
+        <a href="javascript:history.back();" class="fa fa-arrow-left"></a>
+        <form action="#">
+            <input type="search" placeholder="请输入要搜索的商品">
+        </form>
+        <a href="search.html" class="fa fa-search"></a>
+    </header>
+    <!-- 主体区域 -->
+    <main id="main">
+        <div class="category-left">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <ul>
+                        <li class="active">
+                            <a href="#">运动馆</a>
+                        </li>
+                        <li>
+                            <a href="#">运动馆</a>
+                        </li>
+                        <li>
+                            <a href="#">运动馆</a>
+                        </li>
+                        <li>
+                            <a href="#">运动馆</a>
+                        </li>
+                        <li>
+                            <a href="#">运动馆</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="category-right">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <img src="images/brand1.png" alt="">
+                                <p>耐克</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="images/brand1.png" alt="">
+                                <p>耐克</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="images/brand1.png" alt="">
+                                <p>耐克</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="images/brand1.png" alt="">
+                                <p>耐克</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="images/brand1.png" alt="">
+                                <p>耐克</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="images/brand1.png" alt="">
+                                <p>耐克</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <!-- 底部区域 -->
+    <footer id="footer">
+        <!-- .mui-col-xs-3*4>a[href="#"]>i.fa.fa-home+span{首页} -->
+        <ul>
+            <li>
+                <a href="index.html" class="fa fa-home">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="category.html" class="fa fa-bars">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="cart.html" class="fa fa-shopping-cart">
+                    <span>购物车</span>
+                </a>
+            </li>
+            <li>
+                <a href="user.html" class="fa fa-user">
+                    <span>个人中心</span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+<!-- 定义分类左侧的模板 -->
+<script id="categoryLeftTpl" type="text/html">
+    {{each rows value index}}
+     <li class="{{index == 0 ? 'active' : '' }}"><a href="#" data-id="{{value.id}}">{{value.categoryName}}</a></li>
+    {{/each}}
+</script>
+<!-- 定义分类右侧的模板 -->
+<script id="categoryRightTpl" type="text/html">
+    <!-- 判断数组的长度是否大于0  遍历 -->
+    {{if rows.length>0}}
+        {{each rows value}}
+            <li>
+                <a href="#">
+                    <img src="{{value.brandLogo}}" alt="">
+                    <p>{{value.brandName}}</p>
+                </a>
+            </li>
+        {{/each}}
+    {{else}}
+        <p>当前品牌暂无数据!</p>
+    {{/if}}
+</script>
+
+    <script src="lib/zepto/zepto.min.js"></script>
+    <script src="lib/mui/js/mui.js"></script>
+    <script src="lib/artTemplate/template-web.js"></script>
+    <script src="js/category.js"></script>
+</body>
+
+</html>
