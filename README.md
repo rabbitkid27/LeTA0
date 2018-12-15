@@ -1,179 +1,157 @@
 ### 总结
 
-1. 了解git的克隆和获取代码
-2. 了解项目的架构和目录结构
-3. 搭建项目的环境
-4. 启动项目
-5. 理解项目依赖包和引包顺序
-6. less的基本使用和与sass的区别
-7. 主页的搭建和轮播图组件的使用
-
-## 使用github搭建一个博客  还可以托管你之前所做的很多静态页面项目
-
-1. 把代码上传到github上
-2. 创建一个gh-pages分支  打开github在 branch： master 点击 输入gh-pages回车
-3. 通过https://zwxs.github.io/handplan 打开这个项目  如果没有index.html http://zwxs.github.io/handplan/文件名.html
-
-使用命令的方式创建一个分支并且往这个分支提交代码
-
-git branch gh-pages  创建一个分支 分支名gh-pages
-git checkout gh-pages
-git branch 查看当前所在的分支
-git push -u origin gh-pages 把本地仓库的代码提交到远程的gh-pages分支
+1. 了解项目的架构和目录结构
+2. 搭建项目的环境
+3. 启动项目
+4. 理解项目依赖包和引包顺序
+5. 主页的搭建和轮播图组件的使用
+6. 主页商品的布局
+7. 主页区域滚动插件的使用
+8. 使用git管理源代码和上传到github
 
 
-## 静态页面的访问原理
+## 常见网页布局方式和应用场景
 
-1. 是github官网提供的一个功能 你只需要把代码提交到gh-pages分支里面 就可以通过github给你免费域名来访问
-2. 你的github仓库名是什么 访问域名就是 https://用户名.github.io/仓库名
-3. 去github创建一个仓库
-4. 往仓库里面提交代码即可
-    1. git init 初始化
-    2. git add . 添加到暂存区
-    3. git commit -m '提交日志'  提交到本地仓库
-    4. git remote add origin 远程仓库的地址  指定远程仓库地址
-    5. git push -u origin master 把本地的仓库的代码提交到远程仓库的master主分支
-    6. git branch gh-pages 创建一个gh-pages的分支 
-    7. git checkout gh-pages 切换到gh-pages分支
-    8. git push origin gh-pages 把本地仓库的代码提交到远程的gh-pages  如果不是第一次提交到远程 就不需要-u
+1. 固定宽高： 在PC端jd 不考虑屏幕适配的页面
+2. 浮动+定位： 
+    浮动： 传统没有伸缩布局之前只能使用浮动实现块级元素一行显示   
+    定位: 需要定到别的元素上 或者整屏上
+3. 百分比布局(流式布局)+浮动： 需要考虑屏幕适配的页面
+    1. 早期没伸缩布局 只能使用百分比实现 宽度(只能是宽度)自适应
+4. 伸缩布局:宽度自适应  解决以上 块级元素不能一行显示 和 无法自适应屏幕
+    1. 伸缩布局   === 浮动 + 百分比
+    2. 伸缩布局只能实现宽度自适应
+5. rem布局：宽高内容都自适应  解决以上所有问题
+    1. rem =  伸缩布局宽度自适应 +  高度也自适应
 
-## git的一些参数
-
-  1. git commit -m '提交日志'  -m  把暂存区的代码提交到本地仓库
-  2. git commit -am '提交日志' -am 把跟踪过的代码提交到本地仓库  
-     git add . git commit -m '提交'
-  3. git push -u origin master -u指的当前远程仓库和本地仓库相绑定
-  4. ssh-keygen -t rsa -C  -C表示注释
-
-## git查看版本和版本回退
-
-  1. git log 查看历史版本
-  2. git reset 进行版本的回退 
-     1. 回到上一个版本 git reset  --hard HEAD^
-     2. 回到指定版本 git reset  --hard 版本号(4b80b68)
-     
-
-## 电商全端项目 http://m.letao.com/
-  1. 卖鞋和包的一个综合电商平台
-  2. H5+C3+移动web+ajax   一起运用到项目
+6. 框架的栅格布局： 响应式布局 同时适配PC 移动端需要使用栅格布局
 
 
-## 电商全端项目架构
+## 电商全端项目
 
-  1. 后台采用nodejs+mysql 搭建后台服务器  后台就是为了给前端提供接口
-      1. letao-master文件夹 除了public docs文件夹以外的都是后台的node的代码
-      2. 这些代码的作用就是给前端提供API接口 接口的文档 docs文件夹
-      3. 类似于 http://localhost:3000/category/queryTopCategory 的接口
-  2. 前端是采用移动端+PC后台管理系统 前端负责界面显示 
-      1. 前端移动端类似jd一样 负责页面的展示 多了数据交互
-      2. 前端后台管理系统 阿里百秀管理前端的数据
-      3. 前端 PC和移动端 都是负责页面展示 调用接口显示数据
-  3.  后端 nodejs是前端和数据库之间的桥梁  数据库 存储数据库
-      1. 后台 nodejs 操作数据 获取数据 制作API接口
-  4. 我们目前的任务就是负责前端界面展示以及获取nodejsAPI接口实现前后的交互
-      1. 目前我们只需要关系后台接口的文档 怎么调用即可 以及如何把数据渲染到页面
+1. 是一个综合移动端+PC端+node.js后台  (前端(PC+移动)+后端(node.js))    重点是前端
+2. 学会移动web切图写页面 + 移动端基本交互 点击滑动之类的交互 + ajax请求数据 渲染模板 + PC切图 + PC 端的交互 + 请求数据渲染模板
 
+## 搭建电商全端项目
 
-## 回顾项目环境搭建
+1. 安装环境
+    1. 安装node.js (用来开启nodejs服务器 提供数据API数据)
+        1. 打开移动web第三天 1-教学资料 》 nodejs 找到对应位数的安装包
+        2. 双击打开一路下一步安装 不要修改安装目录默认在C盘
+        3. 验证是否安装成功 打开cmd  左下角开始菜单右键 》 运行 或者输入win+r 打开运行窗口输入cmd 回车
+        4. 输入node -v  出现版本  v10.12.0 表示安装成功
+    2. 安装phpstudy  (开启mysql数据库服务器)   没有安装的重新安装一下
 
-  1. 安装node  打开node js安装包 一路下一步安装 保证每个人都要装好
-  2. 导入数据库  打开phpstudy 启动  》 mysql管理器  》 选择导入 选择letao初始化.sql文件 选择编码为UTF-8 点击导入
-  3. 启动项目 打开项目文件夹3-源代码里面 letao-master 建议你都把letao-master放在一个很好找的目录比如桌面
-  4. 进入letao-master文件夹的根目录 输入npm start 回车 出现 node ./bin/www表示成功
-     如果出现 Port 3000 is already in use 表示开启了多个黑窗 只留一个就可以
-  5. 导入一个书签 点击书签导入 选择导入以前的html文件 选择书签.html书签文件 导入  点击已导入书签栏里的乐淘 打开完整和自写版能够打开就表示启动成功
-  6. 后面访问页面的时候 使用书签里面的页面
-
-
-## 乐淘项目使用框架介绍
-
-  1. 移动端 UI使用的MUI框架 http://dev.dcloud.net.cn/mui/ui/
-  2. 字体图标使用 fontawesome专门的字体图标库 http://www.fontawesome.com.cn/faicons/
-  3. zeptoJS库 方便操作DOM元素 已经发送ajax请求 http://www.css88.com/doc/zeptojs_api/
-  4. 模板引擎 artTemplate  方便渲染数据到页面 https://aui.github.io/art-template/zh-cn/docs/index.html
-  5. PC端的 UI使用bootstrap  http://v3.bootcss.com/
-  6. less.js编译less文件 http://lesscss.cn/
-
-## letao-master整个项目的目录结构
-
-  1. .git 本地仓库文件夹
-  2. bin 项目启动的文件夹 》 www就是项目的启动文件(用来开启nodejs服务器)  www代码是node代码  开启了 nodejs的服务器 
-  3. docs 项目的文档文件夹 接口文档 书签 数据库sql文档
-  4. models node.js的数据模型文件 跟数据库的数据表对应的文件 用来增删改查当前的数据表
-  5. node_modules nodejs的项目依赖包文件夹 如果没有无法启动npm start   执行npm install下载依赖包
-  6. public 公开的公共的 前端公开的文件夹 分别是完整移动端 完整PC端 自写移动端 自写PC端
-  7. routes node.js的路由文件夹 路由就是匹配你的的url  返回前端需要的内容 可能是静态页面 也可能是数据
-  8. .gitignore git的忽略清单文件 把一些不需要被git管理的文件 忽略
-  9. app.js 项目的主入口文件 项目主页一样 app.js node.js里面的主页 
-      (概念和前端的index.html类似)
-  10. package.json npm 的包管理配置文件 当前项目依赖包
-  11. README.md 项目说明文档 写项目笔记
-  12. 电商项目.md 我写的项目笔记 
+2. 启动项目
+    1. 下载项目
+        <img src="1-教学资料/1.png" alt="">
+    2. 导入数据库
+        1. 找到数据sql文件 
+            <img src="1-教学资料/2.png" alt="">
+        2. 打开phpstudy 启动数据库
+            <img src="1-教学资料/3.png" alt="">
+        3. 导入数据库
+            <img src="1-教学资料/4.png" alt="">
+            <img src="1-教学资料/5.png" alt="">
+            <img src="1-教学资料/6.png" alt="">
+            <img src="1-教学资料/6-1.png" alt="">
+    3. 开启数据库服务器   打开phpstudy 变绿
+    4. 开启nodeAPi后台服务器 
+        1. 进入letao-master文件夹的根目录
+        2. 在空白处 按住shift+鼠标右键 在此处打开命令窗口
+        <img src="1-教学资料/7.png" alt="">
+3. 访问项目 
+    1. 使用链接的方式访问      
+       1. 乐淘完整版移动端 http://localhost:3000/mobile/index.html
+       2. 乐淘完整版PC端 http://localhost:3000/manage/login.html
+       3. 乐淘自写版移动端 http://localhost:3000/m/index.html
+       4. 乐淘自写版PC端  http://localhost:3000/admin/login.html
+    2. 使用书签的方式访问页面
+        <img src="1-教学资料/10-1.png" alt="">
+        <img src="1-教学资料/10-2.png" alt="">
+        <img src="1-教学资料/10-3.png" alt="">
+    3. 前端用户名密码 itcast   111111
+    4. PC后台管理系统 用户名 root  123456
 
 
-## 前端的目录 public里面的目录
+## 项目架构和项目的文件作用
 
-  1. mobile 完整版的移动端文件夹
-  2. manage 完整版 PC端文件夹
-  3. m 自写版移动端文件夹
-  4. admin 自写版的PC端文件夹
-  
-## 前端去那里写代码 怎么写代码 
-  1. 进入m里面去写代码  写移动端页面  
-      1. 保留 images 和 lib 图片和依赖包文件夹其余删掉
-      2. 新建一个 index.html
-  2. 进入admin里面去写代码 写PC端页面  
-      2. 保留images 和 lib 其他的删掉
-      3. 新建一个login.html
+  1. bin 项目启动目录
+  2. docs 项目文档目录
+  3. models 数据模型文件 增删改查数据库
+  4. node_modules nodejs依赖包文件 类似前端lib
+  5. public 前端项目根目录 （页面文件）
+  6. routes nodejs APi路由文件  APiurl配置
+  7. app.js项目根文件
+  8. readme.md说明文档
+    <img src="1-教学资料/项目的目录结构.png" alt="">
 
-## 项目如何访问( 强调一下只能使用这个网址访问项目)
-  1. 使用书签的方式
-  2. 或者直接访问地址
-     1. 乐淘完整版移动端 http://localhost:3000/mobile/index.html
-     2. 乐淘完整版PC端 http://localhost:3000/manage/login.html
-     3. 乐淘自写版移动端 http://localhost:3000/m/index.html
-     4. 乐淘自写版PC端  http://localhost:3000/admin/login.html
+## 前端的项目文件夹public
 
+  1. admin 自己写的PC后台管理系统文件夹
+  2. m     自己写的移动端文件夹
+  3. manage 完整版的后台管理系统文件夹
+  4. mobile 完整版的移动端文件夹
+    <img src="1-教学资料/public目录结构.png" alt="">
+## 如何写前端代码
 
-## nodejs黑窗 和前端页面的关系
-
-     1. 乐淘完整版移动端 http://localhost:3000/mobile/index.html
-     2. 乐淘完整版PC端 http://localhost:3000/manage/login.html
-     3. 乐淘自写版移动端 http://localhost:3000/m/index.html
-     4. 乐淘自写版PC端  http://localhost:3000/admin/login.html
-    以上4个地址都是nodejs服务器提供的网址node.js在后台开启了一个网页服务器 服务器的网址localhost端口是3000 localhost:3000 (服务器网址)  
-    对于前端来说localhost:3000把public作为网站根目录  public里面的文件夹需要访问
-    http://localhost:3000/m/  === public里面的m
+  1. 把m里面的除了lib和images都删掉
+  2. 把admin里面除了lib和images都删掉
+  3. 把项目在编辑器打开
+      在public 里面的 m文件夹里面 创建一个移动端的主页index.html 然后写点代码
+      在public 里面的 admin文件夹里面 创建一个PC端的登录页面login.html 写点代码
+  4. 打开书签的自写移动端 和 自己写的PC后台管理系统 看看能不能看到自己写的代码
 
 
-## 搭建乐淘移动端的首页
+## 回顾项目启动
 
-  1. 创建首页index.html
-  2. 添加视口
-  3. 引包
-      <!-- 1. 引入mui的CSS文件 -->
-      <link rel="stylesheet" href="lib/mui/css/mui.css">
-      <!-- 2. 引入字体图标的CSS文件 -->
-      <link rel="stylesheet" href="lib/fontAwesome/css/font-awesome.css">
-      <!-- 3. 引入主页的less文件 注意 rel="stylesheet/less"-->
-      <link rel="stylesheet/less" href="less/index.less">
-      <!-- 4. 引入less的编译器文件 -->
-      <script src="lib/less/less.js"></script>
-      <!-- 5. 引入mui的js文件 -->
-      <script src="lib/mui/js/mui.js"></script>
-      <!-- 6. 引入zepto的js文件 操作元素发送请求 -->
-      <script src="lib/zepto/zepto.min.js"></script>
-      <!-- 7. 引入模板引擎的js文件 -->
-      <script src="lib/artTemplate/template.js"></script>
-      <!-- 8. 引入主页的js文件 -->
-      <script src="js/index.js"></script>
+  1. 开启数据流库phpstudy  变绿
+  2. 进入letao-master文件夹 在根目录打开黑窗  黑窗只能开启一个 执行npm start
+  3. 通过书签的方式访问页面（一定要使用书签的链接的方式访问页面）
 
-## 乐淘的标签容器结构
+## 项目的依赖包 
 
+  1. MUI ： 在移动端写页面的UI框架
+  2. zepto: 是一个移动端的JS库 操作DOM和发送ajax请求 
+  3. artTemplate ： 模板引擎的JS文件  用来渲染模板生成模板
+  4. fontawesome ： 字体图标框架  实现页面的字体图标显示
+  5. less ： 编译less 
+  6. bootstrap: 在PC端用来写页面UI框架
+  7. jquery：在PC端写JSDOM操作和发送ajax请求
+    在移动端使用 MUI+zepto+fontawesome+arttemplate+less
+    在PC端使用 bootstrap+jquery+arttemplate+fontawesome+less
+
+
+## 项目的搭建
+
+1. 添加视口和引包
+    <!-- 添加视口 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">  
+    <title>自己写的乐淘移动端首页</title>
+    <!-- 1. 为了实现屏幕适配在最上面先引入rem动态改变根元素字体大小的js -->
+    <script src="js/rem.js"></script>
+    <!-- 2. 引入MUI的CSS文件 -->
+    <link rel="stylesheet" href="lib/mui/css/mui.css">
+    <!-- 3. 引入字体图标的CSS文件 -->
+    <link rel="stylesheet" href="lib/fontAwesome/css/font-awesome.css">
+    <!-- 4. 引入自己主页的less文件 注意rel="stylesheet/less" -->
+    <link rel="stylesheet/less" href="less/index.less">
+    <!-- 5. 引入less的编译器文件 -->
+    <script src="lib/less/less.js"></script>
+    <!-- 1. 引入zepto的JS -->
+    <script src="lib/zepto/zepto.min.js"></script>
+    <!-- 2. 引入MUI的JS文件 -->
+    <script src="lib/mui/js/mui.js"></script>
+    <!-- 3. 引入模板引擎的JS文件 注意 引入template-web.js-->
+    <script src="lib/artTemplate/template-web.js"></script>
+    <!-- 4. 引入自己主页的js文件 -->
+    <script src="js/index.js"></script>
+
+2. 写页面结构
       <!-- 头部区域 -->
       <header id="header">
       </header>
-      <!-- 中间主体区域 -->
+      <!-- 中间的主体区域 -->
       <main id="main">
         <!-- 轮播图区域 -->
         <section id="slide"></section>
@@ -183,256 +161,279 @@ git push -u origin gh-pages 把本地仓库的代码提交到远程的gh-pages�
         <section id="banner"></section>
         <!-- 品牌专区 -->
         <section id="brand"></section>
-        <!-- 运动专区 -->
+        <!-- 运动生活专区 -->
         <section id="sport"></section>
         <!-- 女士专区 -->
         <section id="women"></section>
         <!-- 男士专区 -->
-        <section id="man"></section>
+        <section id="men"></section>  
       </main>
       <!-- 底部区域 -->
-      <footer id="footer"></footer>
+      <footer id="footer">
+      
+      </footer>
 
+3. 实现头部的布局
 
-## 区域滚动插件的使用
+4. 实现广告 和 专区的栅格布局
 
-1. 给页面添加一个区域滚动的父容器
-     <!-- 区域滚动的父容器 -->
+## 主页的内容滚动效果实现
+
+1. 学会使用MUI的区域滚动插件  http://dev.dcloud.net.cn/mui/ui/#scroll
+2. 使用方式
+    1. 引包
+    2. 写结构 
         <div class="mui-scroll-wrapper">
-        </div>
-2. 添加一个区域滚动的子容器
-        <!-- 区域滚动的父容器 -->
-        <div class="mui-scroll-wrapper">
-            <!-- 区域滚动的子容器 -->
-            <div class="mui-scroll">
-            </div>
-        </div>
-3. 把要做区域滚动的内容 轮播图 导航等放到区域滚动的子容器里面
-
-      <!-- 区域滚动的父容器 -->
-        <div class="mui-scroll-wrapper">
-            <!-- 区域滚动的子容器 -->
-            <div class="mui-scroll">
-               <!-- 真实的内容放到区域滚动的子容器里面 -->
-               <section id="slide">
-               </section>
-               <nav id="nav">
-               </nav>
-            </div>
-        </div>
-4. 初始化区域滚动的插件 
-
-      //获取区域滚动的父容器调用初始化方法  里面可以传一些配置参数
-      mui('.mui-scroll-wrapper').scroll({
-          scrollY: true, //是否竖向滚动
-          scrollX: false, //是否横向滚动
-          startX: 0, //初始化时滚动至x
-          startY: 0, //初始化时滚动至y
-          indicators: true, //是否显示滚动条
-          deceleration: 0.0006, //阻尼系数,系数越小滑动越灵敏
-          bounce: true //是否启用回弹
-      });
-    以上都是默认值如果都一样可以不传这些配置参数
-
-5. 由于之前给main添加padding 里面的区域滚动是使用了绝对定位的 不会受到父元素padding的影响
-    1. 需要给.mui-scroll-wrapper放一个相对定位的父元素 而且这个父元素还必须有高度
-          html,
-          body {
-              height: 100%;
-          }
-          body {
-              /* 给body去添加padding 让相对定位的main到中间 */
-              padding: 45px 0;
-          }
-          /* 中间主体区域公共样式 */
-          #main {
-              /* 给main添加相对定位 */
-              position: relative;
-              height: 100%;
-          }
-        要给main添加高度100%  body 和 html都要高度100%
-    2. 而且.mui-scroll-wrapper的父容器不能有padding 不会受到父元素padding的影响
-        给body添加padding 让main只有中间部分的高度减掉了头和尾
-        body {
-              /* 给body去添加padding 让相对定位的main到中间 */
-              padding: 45px 0;
-          }
-
-
-6. 定位总结
-  1. 相对定位 特征是会受到标准流的影响  是会受到父元素的padding的影响的
-  2. 绝对定位 是脱标 不会受到标准的一些影响 只会参照相对定位的父元素的位置  不会受到元素的padding 的影响  位置只受left top值的影响 margin 
-  3. 不要给绝对定位的父元素添加padding
-
-## 总结
-
-1. 项目架构 前端(移动端PC端) 后端 (nodejs) 数据库 (mysql)
-2. 项目的环境搭建
-   1. 安装nodejs
-   2. 导入数据库
-   3. 进入letao-master
-   4. 打开黑窗执行npm start
-   5. 访问乐淘移动端(或者书签)  （千万注意不要使用右键编辑器打开页面要使用对应服务器）
-       1. 乐淘完整版移动端 http://localhost:3000/mobile/index.html
-       2. 乐淘完整版PC端 http://localhost:3000/manage/login.html
-       3. 乐淘自写版移动端 http://localhost:3000/m/index.html
-       4. 乐淘自写版PC端  http://localhost:3000/admin/login.html
-3. 项目目录结构
-  前端目录结构public里面
-  其余都是属于后端的目录结构
-
-4. 写前端代码
-   1. 进入public文件夹
-     mobile 完整移动端
-     manage 完整PC端
-     m      自写移动端
-     admin  自写PC端
-
-5. 进m文件夹 删除除了images 和 lib 其余文件
-6. 创建index.html 通过http://localhost:3000/m/index.html 表示可以写代码了
-7. 项目的依赖包
-   1. MUI 移动端的UI框架
-   2. fontawesome 字体图标库
-   3. zepto 操作DOM和 发送ajax
-   4. arttemplate 模板引擎
-   5. less.js 编译less
-   6. bootstrap PC端UI框架
-
-8. 项目的引包
-   1. 先引入第三方的包  
-   2. 再引入自己的包
-      <!-- 1. 引入MUI的CSS文件 提供组件样式MUI布局-->
-      <link rel="stylesheet" href="lib/mui/css/mui.css">
-      <!-- 2. 引入字体图标的CSS文件 提供一些字体图标-->
-      <link rel="stylesheet" href="lib/fontAwesome/css/font-awesome.css">
-      <!-- 3. 引入首页的less文件  一定要注意把 rel="stylesheet/less" 自写的样式-->
-      <link rel="stylesheet/less" href="less/index.less">
-      <!-- 4. 引入less.js的编译器文件 编译less文件-->
-      <script src="lib/less/less.js"></script>
-      <!-- 5. 引入MUI的JS包 实现MUIJS效果-->
-      <script src="lib/mui/js/mui.js"></script>
-      <!-- 6. 引入模板引擎 渲染模板 -->
-      <script src="lib/artTemplate/template.js"></script>
-      <!-- 7. 引入zepto 帮我们去操作DOM发送ajax -->
-      <script src="lib/zepto/zepto.min.js"></script>
-      <!-- 8. 引入主页的JS文件  自己写JS逻辑代码-->
-      <script src="js/index.js"></script>
-
-  3. CSS在head中引入
-  4. JS在body结束标签上引入 (除了对页面加载有帮助的CSS)
-
-
-9. 搭建乐淘首页
-
-  1. 头部区域
-  2. 轮播图
-  3. 导航
-  4. 广告
-  5. 品牌专区
-  6. 运动专区
-  7. 男士专区
-  8. 女士专区
-  布局主要使用MUI的栅格系统
-
-10. 轮播图插件 http://dev.dcloud.net.cn/mui/ui/#gallery
-    1. 写轮播图插件的结构
-      <div class="mui-slider">
-        <!-- 轮播图的图片容器 -->
-        <!-- 如果要添加无缝轮播图 轮播图图片容器要添加一个mui-slider-loop 类名 -->
-        <div class="mui-slider-group mui-slider-loop">
-            <!-- 图片要多放2个图片 第一张是最后一张 最后一张是第一张 第一张和最后一张要添加mui-slider-item-duplicate 类名 -->
-            <!--支持循环，需要重复图片节点-->
-            <div class="mui-slider-item mui-slider-item-duplicate">
-                <a href="#">
-                    <img src="images/banner6.png" alt="">
-                </a>
-            </div>
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="images/banner1.png" alt="">
-                </a>
-            </div>
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="images/banner2.png" alt="">
-                </a>
-            </div>
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="images/banner3.png" alt="">
-                </a>
-            </div>
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="images/banner4.png" alt="">
-                </a>
-            </div>
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="images/banner5.png" alt="">
-                </a>
-            </div>
-            <div class="mui-slider-item">
-                <a href="#">
-                    <img src="images/banner6.png" alt="">
-                </a>
-            </div>
-            <!--支持循环，需要重复图片节点-->
-            <div class="mui-slider-item mui-slider-item-duplicate">
-                <a href="#">
-                    <img src="images/banner1.png" alt="">
-                </a>
-            </div>
-        </div>
-        <!-- 轮播图的小圆点容器 -->
-        <div class="mui-slider-indicator">
-            <div class="mui-indicator mui-active"></div>
-            <div class="mui-indicator"></div>
-            <div class="mui-indicator"></div>
-            <div class="mui-indicator"></div>
-            <div class="mui-indicator"></div>
-            <div class="mui-indicator"></div>
-        </div>
-      </div>
-    2. 一个大容器  里面一个图片容器 旁边小圆点容器
-    3. 如果需要无法轮播图 要给图片容器添加mui-slider-loop类名
-    4. 多放2张图 第一张是最后一张图标 最后一张是第一张图标 并且添加 mui-slider-item-duplicate
-    5. 轮播图默认无法自动轮播图 要调用JS初始化轮播图
-        //获得slider插件对象
-        var gallery = mui('.mui-slider');
-        //调用slider初始化轮播图
-        gallery.slider({
-            //自动轮播图的间隔时间
-            interval: 1000 
+          <div class="mui-scroll">
+            <!--这里放置真实显示的DOM内容-->
+            <!-- 整个main -->
+          </div>
+        </div>      
+    3. 初始化区域滚动插件
+        mui('.mui-scroll-wrapper').scroll({
+          deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
         });
-  
-11. 区域滚动插件的使用 http://dev.dcloud.net.cn/mui/ui/#scroll
-  
-    1. 写区域滚动的结构 
-          1 个父容器 <div class="mui-scroll-wrapper"></div>
-          1 个子容器 <div class="mui-scroll"></div>
-          内容放到子容器里面  ul 等内容
+    4. 修改样式
+        1. 给区域滚动外面添加一个相对定位的容器让区域滚动参照父元素相对定位而不是body
+        <!-- 中间的主体区域 -->
+        <main id="main">
           <div class="mui-scroll-wrapper">
             <div class="mui-scroll">
               <!--这里放置真实显示的DOM内容-->
+              <!-- 整个main -->
             </div>
-          </div>
-    2. 初始化区域滚动
-       // 初始化区域滚动插件
-        mui('.mui-scroll-wrapper').scroll({
-           scrollY: true, //是否竖向滚动
-           scrollX: false, //是否横向滚动
-           startX: 0, //初始化时滚动至x
-           startY: 0, //初始化时滚动至y
-           indicators: false, //是否显示滚动条
-           deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
-           bounce: true //是否启用回弹
-        });
-    3. 注意区域滚动的父容器和子容器都是绝对定位所以要确保他们的父元素没有padding 如果有padding就会参照盒模型不会参照内容
-      <main id="main">
-         <div class="mui-scroll-wrapper">
-            <div class="mui-scroll">
-              <!--这里放置真实显示的DOM内容-->
+          </div>   
+        </main>
+        2. 由于设置了相对定位 但是里面区域滚动是绝对定位脱标导致父元素没有高度 所以还需要添加一个高度100%继承body 和 html的高度
+              /* 让html和body的高度100% */
+
+              html,
+              body {
+                  height: 100%;
+              }
+
+
+              /* 让main高度也是100% 跟body的内容一样高 */
+
+
+              /* 因为main里面的区域滚动的盒子绝对定位 子元素脱标不能撑开父盒子高度  那就继承body  和 html的高度 */
+
+              #main {
+                  height: 100%;
+                  position: relative;
+                  overflow:hidden;
+              }
+
+
+
+## 第二天总结
+
+1. 乐淘项目架构： 
+    1. 前后端不分离的项目 前端后端代码都在一个文件夹letao-master
+    2. 前端（移动端+PC端）  后端(nodejs) + 数据库
+    3. 前端是public里面的  除了public其他都是 nodejs后端
+
+2. 项目的环境搭建和启动
+    1. 安装node.js 一路下一步
+    2. 安装mysql 安装phpstudy即可 
+    3. 导入数据 把letao-master里面的docs  里面的letao初始化.sql导入数据库 UTF-8编码问题
+    4. 启动
+        1. 开启数据库
+        2. 开启nodejs黑窗  
+        3. 进入letao-master根目录按住shift+右键  在此处打开命令窗口 powershell 窗口
+        4. 输入npm start 回车 没有报错就表示成功
+        5. 黑窗和数据库都不要关闭 黑窗只有能一个
+            如果开启多个回车 报错 Port 3000 is already in use   3000端口被占用
+            全部关闭再开一个（把node.js进程关闭）
+3. 写前端代码
+    1. 在public 前端目录
+    2. m 自写移动端
+    3. admin 自写的PC端
+    4. mobile 完整移动端
+    5. manage完整的PC端
+    6. 在m里面 和 admin里面写代码 把 除了lib 和 images之外的都删掉
+    7. 访问方式
+        1. 使用链接访问
+             1. 乐淘完整版移动端 http://localhost:3000/mobile/index.html
+             2. 乐淘完整版PC端 http://localhost:3000/manage/login.html
+             3. 乐淘自写版移动端 http://localhost:3000/m/index.html
+             4. 乐淘自写版PC端  http://localhost:3000/admin/login.html
+        2. 使用书签的方式访问
+            1. 导入书签 点击书签的链接
+4. 写移动端首页
+    1. 引包 移动端需要MUI + fontawesome + zepto + arttemplate + less
+        1. 先引入第三方CSS
+        2. 在引入自己的CSS
+        3. 如果有依赖先引入依赖 在引入不依赖的
+        4. JS放后面引入(一些特殊的JS除外)
+    2. 搭建首页布局
+          写结构
+          头部
+          主体
+            轮播图
+            导航条
+            广告
+            品牌
+            运动
+            女士
+            男士 
+          底部
+    3. 实现头部布局
+        1. 使用rem单位 把页面所有px使用rem 
+        2. 默认以1rem = 100px作为标准 设置根元素字体大小 默认 100px
+        3. 写代码的时候把一些px单位 / 100  例如 45px   0.45rem
+        4. 使用 fontawesome图标 让图标定位在右边
+    4. 导航条 使用flex布局
+    5. 广告使用flex布局
+    6. 各种专区 flex布局
+    7. 首页的区域滚动效果
+        1. 给页面容器固定高度
+        2. 以main为大容器 main固定高度 设置100%  body 100vh
+        3. 给main设置相对定位 里面的区域滚动父容器设置绝对定位 父元素一定要相对定位
+        4. 添加区域滚动的父容器 和 子容器
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    真实的内容 轮播图 导航条等
+                </div>
             </div>
-          </div>
-      </main>
+        5. 使用JS初始化区域滚动 （查看官网文档）
+  
+
+## 分类页面的数据渲染
+
+1. 获取一级分类数据的函数
+     1. 使用ajax请求 数据接口 /category/queryTopCategory
+     2. 创建页面标签的模板
+     3. 调用模板生成的函数 生成html
+     4. 把生成的模板渲染到左侧分类
+
+2. 获取二级分类的函数
+     1. 点击了一级分类去获取二级分类
+     2. 获取当前点击的一级分类的id
+     3. 根据当前一级分的id调用二级分类的APi接口获取二级分类数据
+     4. 创建 和 渲染模板
+     5. 切换点击a的元素li的active类名
+
+## 商品搜索历史记录的功能
+
+1. 添加搜索记录
+  根据输入输入框内容点击搜索添加到本地存储中
+  而且要把每次都是的内容都加进去(使用一个数组的方式 追加)
+      1.1 给搜索按钮添加点击事件     
+      1.2 获取当前文本输入的内容 判断如果用户没有输入提示请输入
+      1.3 获取本地存储中已经存储的数据  并且转成一个数组 
+          如果有值就使用JSON.parse转换成数组 如果没有值 使用空数组
+      1.4 把当前输入文本的内容 往前插入到数组中
+      1.4.1 去数组查询一下当前搜索的内容是否存在 存在删除 再往前追加          
+      1.4.2 调用删除的方法删掉当前索引的值 删1个
+      1.4.3 删掉了之后再往数组的前面追加
+      1.5 把数组保存到本地存储中 往本地存储存储值的时候也要转成字符串存储
+      1.6 添加完成调用查询的方法查询历史记录 
+      1.7 添加完成后清空输入框
+2. 查询搜索记录
+  查询本地存储中的搜索记录 
+  渲染搜索历史列表
+    2.1 获取本地存储中已经存储的数据  并且转成一个数组 
+    2.2 调用历史记录的模板 传入当前的搜索历史的数据 
+        但是数据是一个数组 不是一个对象 把数组转成一个对象再传入模板函数里面
+
+3. 删除搜索记录
+  点击x删除当前搜索记录 
+  获取当前点击搜索内容去数组中删除
+  删除完成后保存到本地存储中
+    3.1 给所有的删除x添加点击 tap
+    3.2 获取当前点击x的删除的索引
+    3.3 获取本地存储中已经存储的数据  并且转成一个数组 
+    3.4 把数组中当前要删除的索引的元素删掉
+    3.5 删除完成后要把数组重新保存到本地存储中
+    3.6 删除完成后要重新查询刷新页面
+4. 清空搜索记录
+  把整个本地存储的键清空  
+    4.1 给清空按钮添加点击事件
+    4.2 把整个本地存储的键清空removeItem  不要使用clear
+    4.3 清空完成后重新刷新页面
+
+
+
+## 第三天总结
+
+1. 分类页面布局
+    上
+      左 中 右  圣杯布局
+    中
+      左侧分类
+      右侧分类
+      flex伸缩布局
+    下
+2. 分类页面的功能
+  1. 左侧 和右侧分类的滑动
+  2. 加一个区域滚动
+    <div class="mui-scroll-wrapper">
+      <div class="mui-scroll">
+        <ul>真实ulli内容</ul>
+      </div>
+    </div>
+  3. 设置样式
+    给父元素设置相对定位
+    父元素高度从父元素继承下来
+    main父元素从body继承
+  4. 初始化区域滚动
+  5. 内容高度没有超过父容器高度 无法滚动（给内容写一个min-height比父元素稍微高1px）
+  6. 右侧分类padding不会影响到定位元素的  给里面ul设置padding 因为li没有定位
+  7. 设置align-content: flex-start;  让内容对齐方式不要平铺拉伸 而是从顶部对齐
+3. 分类数据请求
+  1. 请求一级分类 /category/queryTopCategory
+  2. API都是在locahost:3000下面的    / 表示根目录  注意/不能漏掉了
+    locahost:3000/category/queryTopCategory
+  3. 创建模板渲染模板
+      模板参数数据必须是对象 已经是对象没有包装一个空对象里面
+      如果数据里面有数组需要遍历 
+      数组名叫什么each什么 后台一般返回rows数组  each rows
+  4. 右侧通过点击了左侧再发请求
+      1. 获取左侧点击的分类id(自定义属性绑定在每个a身上)  通过data('id') 专门获取自定义属性的
+      2. 根据id请求二级分类数据
+      3. 渲染右侧分类
+      
+4. 商品搜索的布局
+    搜索表单  flex布局 （去掉输入框右边圆角 和 按钮左边的圆角）
+    搜索历史  使用MUI 卡片
+    内容使用列表  右侧添加数字角标等控件
+5. 搜索的功能
+  1. 添加搜索记录
+      1. 点击按钮获取输入值
+      2. 非空判断 !search.trim()  先去空格 再 取反
+      3. 获取之前的记录如果有就获取(getItem)转成数组JSON.parse 没有使用空数组
+      4. 判断 值在数组中存不存在indexOf 存在把值删掉 splice
+      5. 不存在或者删掉之后再往数组的前面添加 unshift
+      6. 把数据保存到本地存储中 setItem 转成字符串JSON.stringfy()
+      7. 重新调用查询刷新
+  2. 查询搜索记录
+      1. 获取记录的值 转成数组
+      2. 创建模板 把数组转成对象传入模板里面
+          historyData = {rows:historyData};  把数组存到对象里面 重新覆盖原来的数组
+          <!-- var num = 10;
+          num = num+10; -->
+      3. 调用模板渲染页面
+      
+  3. 删除搜索记录
+      1. 给所有删除x绑定一个索引  根据索引来删除
+      2. 给x加事件 获取当前点击x的删除的索引
+      3. 获取所有数组 根据当前的索引去删除这个元素 splice(index,1);
+      4. 删完后重新保存到存储里面
+      5. 重新调用查询刷新
+  4. 清空搜索记录
+      1. 点击清空的时候把整个键删掉 removeItem() 不要使用clear 会把别人删掉
+      2. 重新查询刷新页面
+
+6. 商品列表布局
+    1. 表单使用搜索页面的表单
+    2. 商品列表使用首页的商品列表
+7. 商品列表搜索功能
+    1. 拿到当前要搜索的关键字
+    2. 在搜索页面点击搜索加完历史记录后 跳转到商品列表并且传入一个参数 当前输入搜索的内容
+    3. 在商品列表获取传递过来参数的值
+        decodeURI(location.search.split('=')[1])  只能拿1个参数 如果有多个参数 去思考一下
+    4. 调用查询商品APi传入当前搜索关键字
+      API需要传入一些必传参数page 页码数   pageSize   每页大小 选择传入proName=search
+    5. 创建模板 渲染商品列表
+    6. 文字不等设置固定显示2行 超出隐藏 设置固定高度 和 行高 只能显示2行 overflow:hidden 隐藏溢出

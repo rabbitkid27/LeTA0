@@ -127,83 +127,12 @@ body {
 .product-list ul li a.product .product-img {
   width: 100%;
 }
-#nav {
-  padding: .1rem;
+#main .search-history .mui-card-header span {
+  font-size: .14rem;
 }
-#nav ul {
-  display: flex;
-  flex-wrap: wrap;
+#main .search-history .mui-card-header a {
+  color: #666;
 }
-#nav ul li {
-  width: 33.33%;
-}
-#nav ul li a {
-  display: block;
-}
-#nav ul li a img {
-  width: 100%;
-}
-#banner {
-  display: flex;
-  padding: 0.1rem;
-}
-#banner .banner-left {
-  flex: 2;
-  height: 2.4rem;
-  width: 2.3667rem;
-}
-#banner .banner-left a {
-  font-size: 0;
-  display: block;
-}
-#banner .banner-left a img {
-  width: 50%;
-}
-#banner .banner-right {
-  flex: 1;
-  height: 2.4rem;
-  width: 1.1833rem;
-}
-#banner .banner-right a {
-  display: block;
-}
-#banner .banner-right a img {
-  width: 100%;
-}
-#brand {
-  padding: 0.1rem;
-}
-#brand .title a {
-  display: block;
-}
-#brand .title a img {
-  width: 100%;
-}
-#brand .content ul {
-  display: flex;
-  flex-wrap: wrap;
-}
-#brand .content ul li {
-  width: 25%;
-}
-#brand .content ul li a {
-  display: block;
-}
-#brand .content ul li a img {
-  width: 100%;
-}
-#sport,
-#women,
-#man {
-  padding: 0.1rem;
-}
-#sport .title a,
-#women .title a,
-#man .title a {
-  display: block;
-}
-#sport .title a img,
-#women .title a img,
-#man .title a img {
-  width: 100%;
+#main .search-history .mui-card-content .fa-times {
+  line-height: .17rem;
 }

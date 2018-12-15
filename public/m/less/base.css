@@ -87,3 +87,52 @@ body {
   margin: .025rem;
   display: block;
 }
+.form-search {
+  display: flex;
+  padding: 10px;
+}
+.form-search .input-search {
+  height: .34rem;
+  flex: 1;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #006699;
+  font-size: .14rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.form-search .btn-search {
+  width: .6rem;
+  height: .34rem;
+  background-color: #006699;
+  border-color: #006699;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.product-list ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-list ul li {
+  width: 50%;
+  padding: 0 5px;
+}
+.product-list ul li a.product {
+  margin-top: 10px;
+  background-color: #fff;
+  text-align: center;
+  display: block;
+  box-shadow: 0px 0px 2px hotpink;
+  overflow: hidden;
+}
+.product-list ul li a.product .product-img {
+  width: 100%;
+}
+.product-list ul li a.product .product-name {
+  /* 限制只显示2行文字超出隐藏 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

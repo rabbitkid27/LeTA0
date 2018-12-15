@@ -93,3 +93,59 @@ body{
     }
     
 }
+
+// 搜索表单的公共样式
+.form-search{
+    display: flex;
+    padding: 10px;
+   .input-search{
+       height: .34rem;
+       flex: 1;
+       text-align: left;
+       background-color: #fff;
+       border: 1px solid @main-color;
+       font-size: .14rem;
+       border-top-right-radius: 0;
+       border-bottom-right-radius: 0;
+       // border-radius: 0.06rem 0 0 0.06rem;
+   }
+   .btn-search{
+       width: .6rem;
+       height: .34rem;
+       background-color:@main-color;
+       border-color: @main-color;
+       border-top-left-radius: 0;
+       border-bottom-left-radius: 0;
+   }
+}
+
+// 商品列表的公共样式
+.product-list {
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+        li{
+            width: 50%;
+            padding: 0 5px;
+            a.product{
+                margin-top: 10px;
+                background-color: #fff;
+                text-align: center;
+                display: block;
+                box-shadow: 0px 0px 2px hotpink;
+                overflow: hidden;
+                .product-img{
+                    width: 100%;
+                }
+                .product-name{
+                    /* 限制只显示2行文字超出隐藏 */
+                   display: -webkit-box;
+                    -webkit-box-orient:vertical;
+                    -webkit-line-clamp:3;
+                    overflow: hidden;    
+                    text-overflow: ellipsis;   
+            }
+        }
+    }
+}   
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="Ie=edge">
+    <title>Mobile client Search</title>
+    <link rel="stylesheet" href="lib/mui/css/mui.css">
+    <link rel="stylesheet" href="lib/fontAwesome/css/font-awesome.css">
+    <link rel="stylesheet/less" href="less/productlist.less">
+    <script src="lib/less/less.js"></script>
+    <script src="js/rem.js"></script>
+</head>
+
+<body>
+    <!-- 头部区域 -->
+    <header id="header">
+        <a href="javascript:history.back();" class="fa fa-arrow-left"></a>
+        <h4>商品列表</h4>
+    </header>
+    <!-- 主体区域 -->
+    <main id="main">
+        <!-- 搜索表单 -->
+        <form action="#" class="form-search">
+            <input type="search" class="input-search" name="" placeholder="请输入要搜索的商品">
+            <button type="button" class="mui-btn mui-btn-primary btn-search">搜索</button>
+        </form>
+        <!-- 商品列表 -->
+        <div class="product-list">
+            <div class="title">
+                <ul>
+                    <li class="active"><a href="#">上架时间<i class="fa fa-angle-down"></i></a></li>
+                    <li><a href="#">价格<i class="fa fa-angle-down"></i></a></li>
+                    <li><a href="#">销量<i class="fa fa-angle-down"></i></a></li>
+                    <li><a href="#">折扣<i class="fa fa-angle-down"></i></a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <ul>
+                    <li>
+                        <a href="#" class="product">
+                            <img class="product-img" src="images/product.jpg" alt="">
+                            <p class="product-name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700</p>
+                            <p class="product-price">
+                                <span>￥566.00</span>
+                                <del>￥888.00</del>
+                            </p>
+                            <p class="product-buy">
+                                <button type="button" class="mui-btn mui-btn-primary ">立即购买</button>
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="product">
+                            <img class="product-img" src="images/product.jpg" alt="">
+                            <p class="product-name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700</p>
+                            <p class="product-price">
+                                <span>￥566.00</span>
+                                <del>￥888.00</del>
+                            </p>
+                            <p class="product-buy">
+                                <button type="button" class="mui-btn mui-btn-primary ">立即购买</button>
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="product">
+                            <img class="product-img" src="images/product.jpg" alt="">
+                            <p class="product-name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700</p>
+                            <p class="product-price">
+                                <span>￥566.00</span>
+                                <del>￥888.00</del>
+                            </p>
+                            <p class="product-buy">
+                                <button type="button" class="mui-btn mui-btn-primary ">立即购买</button>
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="product">
+                            <img class="product-img" src="images/product.jpg" alt="">
+                            <p class="product-name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700</p>
+                            <p class="product-price">
+                                <span>￥566.00</span>
+                                <del>￥888.00</del>
+                            </p>
+                            <p class="product-buy">
+                                <button type="button" class="mui-btn mui-btn-primary ">立即购买</button>
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <!-- 底部区域 -->
+    <footer id="footer">
+        <ul>
+            <li>
+                <a href="index.html" class="fa fa-home">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="category.html" class="fa fa-bars">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="cart.html" class="fa fa-shopping-cart">
+                    <span>购物车</span>
+                </a>
+            </li>
+            <li>
+                <a href="user.html" class="fa fa-user">
+                    <span>个人中心</span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+
+    <script id="productListTpl" type="text/html">
+        {{each data value}}
+            <li>
+                <a href="#" class="product">
+                    <img class="product-img" src="{{value.pic[0].picAddr}}" alt="">
+                    <p class="product-name">{{value.proName}}</p>
+                    <p class="product-price">
+                        <span>￥{{value.price}}</span>
+                        <del>￥{{value.oldPrice}}</del>
+                    </p>
+                    <p class="product-buy">
+                        <button type="button" class="mui-btn mui-btn-primary ">立即购买</button>
+                    </p>
+                </a>
+            </li>
+        {{/each}}
+    </script>
+
+    <script src="lib/zepto/zepto.min.js"></script>
+    <script src="lib/mui/js/mui.js"></script>
+    <script src="lib/artTemplate/template-web.js"></script>
+    <script src="js/productlist.js"></script>
+</body>
+
+</html>
