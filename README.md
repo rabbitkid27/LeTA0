@@ -437,3 +437,197 @@
       API需要传入一些必传参数page 页码数   pageSize   每页大小 选择传入proName=search
     5. 创建模板 渲染商品列表
     6. 文字不等设置固定显示2行 超出隐藏 设置固定高度 和 行高 只能显示2行 overflow:hidden 隐藏溢出
+
+## 商品列表的功能
+
+### 1. 根据url搜索商品列表功能
+    1.1 获取当前商品列表url里面要搜索的参数  ?search=鞋  获取当前这个'鞋'
+        获取url参数的方式
+        1. 如果不考虑多个的话使用字符串分割 用=号分割 取分割的后面的[1]
+           如果有中文会有乱码问题要使用decodeURI转码
+           decodeURI(location.search.split('=')[1]);
+        2. 如果考虑多个参数 要获取指定的参数 推荐使用正则匹配  
+            百度链接：  https://www.cnblogs.com/Arlar/p/6606259.html
+            getQueryString: function(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = decodeURI(window.location.search).substr(1).match(reg);
+                if (r != null) return decodeURI(r[2]);
+                return null;
+            }
+            传入需要获取参数值的参数名 获取参数值 原理是使用正则根据参数名匹配=号后面的参数值 然后转码成中文
+            使用方式 调用当前getQueryString 方法传入参数名(字符串类型参数) 获取到参数值并且解决中文乱码问题
+              ?search=鞋&price=1
+              this.getQueryString('search')  == 鞋
+              this.getQueryString('price')  == 1
+
+    1.2 根据当前搜索的关键字去调用API搜索商品列表
+    1.3 创建一个模板 渲染商品列表数据
+    1.4 调用模板方法生成html 渲染到页面
+
+### 2. 点击搜索按钮实现商品搜索功能
+    1.1 给搜索按钮添加点击事件
+    1.2 获取输入框输入的文本内容
+    1.3 根据当前搜索的关键字去调用API搜索商品列表
+    1.4 创建一个模板 渲染商品列表数据      
+    1.5 调用模板方法生成html 渲染到页面
+
+### 3. 商品的排序功能 点击价格 或者 销量能够实现商品的排序
+     3.1 给所有排序按钮添加点击事件
+     3.2 获取当前点击的排序的方式
+          (在页面中就要定义这种排序的属性) 只要获取排序的data-sort-type属性的值     
+     3.3 获取当前排序的顺序 
+             price 1是升序  2 降序
+             num  1是升序  2 降序
+             需要在页面中定义排序的顺序 默认都为1
+             在JS中去获取当前的排序的顺序如果为 1  变成 =  2  如果为2变成1
+         3.8 获取当前排序里面的i标签  删除之前的类名 再添加新的类名
+     3.4 判断你当前是属于哪一种排序的方式 如果是price 就行价格排序 如果num就进行num排序
+         3.5 调用APi传入当前排序的顺序   
+                3.6 调用模板 
+                 3.7 渲染页面
+         3.5 调用APi传入当前排序的顺序   
+                 3.6 调用模板 
+                 3.7 渲染页面
+                 
+### 4. 下拉刷新搜索最新的商品
+
+  1. 学会下拉刷新和上拉加载插件的使用
+    1. 写页面结构
+      <!--下拉刷新容器  就是区域滚动的父容器-->
+      <div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+          <!-- 区域滚动的子容器 -->
+          <div class="mui-scroll">
+              <!--真实要刷新的滑动的内容-->
+              <ul class="mui-table-view mui-table-view-chevron">
+              </ul>
+          </div>
+      </div>
+    2. 初始化
+        mui.init({
+            //指定初始化刷新的功能
+            pullRefresh: {
+                //初始化刷新的功能的容器
+                container: '#refreshContainer',
+                //初始化下拉刷新
+                down: {
+                    //是下拉刷新的回调函数 发送ajax请求刷新页面 并结束下拉刷新效果
+                    callback: pulldownRefresh
+                },
+                //初始化上拉加载
+                up: {
+                    contentrefresh: '正在加载...',
+                    //是上拉的回调函数 发送ajax请求追加页面 并结束上拉加载效果
+                    callback: pullupRefresh
+                }
+            }
+        });
+        /**
+           * 下拉刷新具体业务实现
+           */
+          function pulldownRefresh() {
+              //定时器为了模拟请求的延迟
+              setTimeout(function() {
+                 // ajax请求 渲染刷新页面
+                 $.ajax()
+                 //当页面刷新完成结束下拉刷新效果 不结束会一直转
+                  mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+              }, 1500);
+          }
+          var page = 1;
+          /**
+           * 上拉加载具体业务实现
+           */
+          function pullupRefresh() {
+              setTimeout(function() {
+                  // ajax请求 追加渲染页面
+                  $.ajax()
+                  //当页面刷新完成结束上拉加载效果 不结束会一直转
+                  mui('#refreshContainer').pullRefresh().endPullupToRefresh();
+                  //如果传入一个参数true表示上拉加载到底了没有更多数据了
+                  mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
+              }, 1500);
+          }
+    3. 下拉和上拉的一些常用的方法
+          1. 结束下拉刷新  
+            mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+          2. 结束上拉加载  
+            mui('#refreshContainer').pullRefresh().endPullupToRefresh();
+          3. 结束上拉加载并且提示没有数据     
+            mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
+          4. 重置上拉加载功能  
+            mui('#refreshContainer').pullRefresh().refresh(true);
+    
+    4. 功能具体实现步骤
+          4.1 初始化下拉刷新和上拉加载功能
+          4.2 指定下拉刷新的回调函数 发送ajax请求刷新页面 并结束下拉刷新效果
+          4.3 发送ajax请求 渲染刷新页面
+          4.4 调用模板 
+          4.5 渲染页面
+          4.6 当页面刷新完成结束下拉刷新效果 不结束会一直转
+          4.7 除了需要下拉刷新还要重置上拉加载  
+          4.8 把page也重置为1
+
+### 5. 上拉加载搜索更多商品 往当前列表的后面追加更多的商品
+
+  
+ 
+    5.1 指定上拉的回调函数 发送ajax请求追加页面 并结束上拉加载效果
+    5.2 ajax请求下一页的数据 追加渲染页面
+    5.3 请求下一页数据 定义page变量默认=1  ++page    每次请求下一页
+    5.4 判断当前返回数据的data数组是否还有长度 有长度表示还有数据 只要上拉 
+    如果没有长度 表示没有数据 结束并提示没有数据了
+    5.5 调用模板 
+    5.6 追加页面
+    5.7 当页面刷新完成结束上拉加载效果 不结束会一直转
+    5.8 如果传入一个参数true表示上拉加载到底了没有更多数据了
+
+## 1. 实现商品列表跳转到商品详情
+
+  1. 点击立即购买跳转到商品详情
+  2. 使用JS给按钮加事件 跳转 传递当前商品id参数
+
+## 2. 实现商品详情页面的布局
+
+  1. 轮播图 
+  2. 商品信息 MUI 列表
+  3. 商品尺码 mui默认按钮
+  4. 商品数量 mui数字输入框
+
+## 3. 实现商品详情的页面动态渲染
+
+  1. 通过封装好的查询url参数值的函数获取 id参数的值
+  2. 请求API获取数据 传入当前id参数
+  3. 这个返回数据data.size尺码是字符串 40-50字符串 把字符串转成数组
+        // 3.1  拿到当前字符串最小值
+        var min = data.size.split('-')[0] - 0;
+        // 3.2  拿到当前字符串最小值
+        var max = data.size.split('-')[1];
+        // 3.4 把data.size赋值为空数组
+        data.size = [];
+        // 3.5 循环从最小开始到最大结束
+        for (var i = min; i <= max; i++) {
+            // 3.6 把循环的每个都添加到数组里面
+            data.size.push(i);
+        }
+  4. 调用商品详情的模板生成html
+      
+  5. 等到页面中的商品详情信息加载完了后再 初始化区域滚动
+  6. 等轮播图结构出来了之后再初始化轮播图
+  7. 等数字框出来后手动初始化
+  8. 等尺码出来后手动初始化点击
+
+
+## 4. 加入购物车
+
+  1. 给加入购物车按钮加事件
+  2. 让尺码能够点击 给所有尺码加点击事件 切换active类名
+  3. 获取选中尺码和数量
+  4. 判断当前尺码和数量是否选中
+  5. 没有选中使用mui.toast('消息提示框') 提示用户选择
+  6. 调用API加入购车
+      1. 传参设置productId:当前url获取id(作为全局变量) size:获取的尺码  num: 当前获取的数量
+      2. type设置为post 提交 都是post
+      3. 还需要登录 （先使用完整版登录 cookie都是一个网站是共享的）
+      4. 返回错误信息表示未登录 跳转到登录页
+      5. 如果成功跳转到购物车(未实现)
+      6. 如果加入成功可以去完整版购物车查看 

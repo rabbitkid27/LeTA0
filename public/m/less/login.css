@@ -137,25 +137,14 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#main {
-  background-color: #fff;
+#main .mui-input-group .mui-input-row .btn-get-vcode {
+  position: absolute;
+  right: 0;
+  width: 1rem;
 }
-#main .product-list .title {
-  background-color: #ccc;
+#main .mui-input-group .mui-button-row {
+  padding: 6px;
 }
-#main .product-list .title ul {
-  display: flex;
-}
-#main .product-list .title ul li {
-  flex: 1;
-}
-#main .product-list .title ul li.active a {
-  color: red;
-}
-#main .product-list .title ul li a {
-  display: block;
-  color: #666;
-  font-size: .12rem;
-  line-height: .3rem;
-  text-align: center;
+#main .mui-input-group .mui-button-row .mui-btn-primary.btn-register {
+  width: 100%;
 }
