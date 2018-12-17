@@ -1,0 +1,68 @@
+@import 'base.less';
+body{
+    padding-bottom: .75rem;
+}
+#main{
+    .mui-media{
+        .mui-pull-left{
+            &.mui-checkbox{
+                .mui-media-object{
+                    height: .8rem;
+                    line-height: .8rem;
+                    max-width: 0.8rem;
+                }
+                input{
+                    // 取消定位
+                    position: static;
+                    display: block;
+                    margin: 0 auto;
+                    &::before{
+                        color: yellowgreen;
+                    }
+                }
+               
+            }
+        }
+        .mui-media-body{
+            line-height: .36rem;
+            .product-name{
+                white-space: normal;
+                color: #666;
+                line-height: .2rem;
+            }
+            .product-price{
+                span{
+                    font-weight: 600;
+                    color: red;
+                }
+                del{
+                    color:#ccc;
+                }
+            }
+            .product-params{
+                display: flex;
+                justify-content: space-between;
+                .product-size{
+                }
+                .product-num{
+                }
+            }
+        }
+    }
+}
+#order{
+    position: fixed;
+    background-color: #fff;
+    bottom: .45rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+    height: .3rem;
+    .order-total{
+        padding-left: .2rem;
+        line-height: .3rem;
+        font-weight: 600;
+        color: red;
+    }
+}
