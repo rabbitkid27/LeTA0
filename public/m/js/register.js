@@ -24,7 +24,7 @@ $(function(){
                     return false;
                 }
                 var password1 = $('.password1').val();
-                var password1 = $('.password1').val();
+                var password2 = $('.password2').val();
                 if(password1!=password2){
                     mui.alert("两次密码不一致!");
                     return false;
@@ -41,23 +41,23 @@ $(function(){
                     success:function(data){
                         if(data.success){
                             mui.toast("注册成功!");
-                            location=href;
+                            // 直接写死过去个人中心或者首页,否则会回去登录页面-注册页面-登录页面-注册页面死循环
+                            location= 'login.html?returnUrl=user.html';
                         }else{
                             mui.toast(data.message);
                         }
                     }
-                })
-
-            }
+            })
+        }
     });
 //    获取验证码功能
     $('.btn-get-vcode').on('tap',function(){
         $.ajax({
             url:'/user/vCode',
             success:function(data){
-                console.log(data);
-                vCode = mui.alert(data.vCode);
-                // vCode = data.vCode;
+                console.log(data.vCode);
+                mui.alert(data.vCode);
+                vCode = data.vCode;
             }
         })
     });

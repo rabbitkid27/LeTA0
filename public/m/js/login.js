@@ -16,8 +16,10 @@ $(function(){
             data:{username:username,password:password},
             success:function(data){
                 if(data.success){
-                    window.history.back();
+                    // window.history.back();
                     //返回上一页(后退功能)
+                    var returnUrl = getQueryString('returnUrl');
+                    location = returnUrl;
                 }else{
                     mui.toast(data.message,{ duration:'long', type:'div' }) 
                 }
@@ -26,7 +28,20 @@ $(function(){
 
     });
 
-    $('.btn-register').on('tap',function(){
-        location='register.html';
+    $('.btn-register').on('tap',function () {
+		// 跳转到注册页面
+		location = 'register.html';
     });
+
+     // 根据url参数名取值
+     function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        // console.log(r);
+        if (r != null) {
+            //转码方式改成 decodeURI
+            return decodeURI(r[2]);
+        }
+        return null;
+    }
 })

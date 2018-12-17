@@ -93,7 +93,7 @@ $(function() {
         					}
         				});
         			}else{
-                        location='login.html';
+                        location='login.html?returnUrl='+location.href;
                     }
         		}
         })
