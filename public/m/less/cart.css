@@ -119,7 +119,7 @@ body {
   width: 50%;
   padding: 0 5px;
 }
-.product-list ul li a.product {
+.product-list ul li .product {
   margin-top: 10px;
   background-color: #fff;
   text-align: center;
@@ -127,10 +127,10 @@ body {
   box-shadow: 0px 0px 2px hotpink;
   overflow: hidden;
 }
-.product-list ul li a.product .product-img {
+.product-list ul li .product .product-img {
   width: 100%;
 }
-.product-list ul li a.product .product-name {
+.product-list ul li .product .product-name {
   /* 限制只显示2行文字超出隐藏 */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -188,4 +188,13 @@ body {
   line-height: .3rem;
   font-weight: 600;
   color: red;
+}
+.product-size {
+  line-height: 0.38rem;
+}
+.product-size .btn-size {
+  margin-top: 0.05rem;
+}
+.product-size .btn-size.active {
+  background-color: orange;
 }

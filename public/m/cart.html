@@ -108,15 +108,16 @@
             <li class="mui-table-view-cell mui-media">
                 <!-- 右边默认看不到的 `内容 -->
                 <div class="mui-slider-right mui-disabled">
-                    <a class="mui-btn mui-btn-primary">编辑</a>
-                    <a class="mui-btn mui-btn-danger">删除</a>
+                    <!-- 鱿鱼编辑需要数据的过多,干脆吧整个数据对象存到自定义属性中去↓ 通过自定义属性拿到这个编辑商品的对象value对象 -->
+                    <a class="mui-btn mui-btn-blue mui-icon mui-icon-compose btn-edit" data-product="{{value}}"></a>
+                    <a class="mui-btn mui-btn-red mui-icon mui-icon-trash btn-delete" data-id="{{value.id}}"></a>
                 </div>
                 <!-- 左边默认显示的内容-->
                 <a href="javascript:;" class="mui-slider-handle">
                     <div class="mui-pull-left mui-checkbox">
                         <!-- !!!图片是一个数组 取数组中的第一个图片的图片地址!!! -->
                         <img class="mui-media-object" src="{{value.pic[0].picAddr}}">
-                        <input name="checkbox1" value="Item 1" type="checkbox" checked>
+                        <input name="checkbox1" value="Item 1" type="checkbox" class="choose" data-price="{{value.price}}" data-num="{{value.num}}">
                     </div>
                     <div class="mui-media-body">
                         <p class="product-name">{{value.proName}}</p>
@@ -140,6 +141,21 @@
         {{else}}
             <p>空空如也的购物车唉~</p>
         {{/if}}
+    </script>
+    <script id="editCarTpl" type="text/html">
+        <li class="mui-table-view-cell product-size">
+                尺码： {{each productSize value}}
+                <button type="button" class="btn-size{{value == size ? 'active' : ''}}" data-size="{{value}}">{{value}}</button>
+                {{/each}}
+            </li>
+            <li class="mui-table-view-cell">
+                数量：
+                <div class="mui-numbox" data-numbox-step='1' data-numbox-min='0' data-numbox-max='{{num}}'>
+                    <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                    <input class="mui-numbox-input" type="number" />
+                    <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+                </div> 剩余：<span>{{num}}</span>件
+            </li>
     </script>
 
     <script src="lib/zepto/zepto.min.js"></script>

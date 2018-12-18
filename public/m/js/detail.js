@@ -86,7 +86,8 @@ $(function() {
         					// 获取当前用户点击了左边的还是右边
         					console.log(e);
         					if(e.index == 0){
-        						//点击了左边 跳转到购物车查看
+                                //点击了左边 跳转到购物车查看
+                                location = 'cart.html';
         					}else{
         						// 点击否就不看 表示还继续吗
         						mui.toast('你继续加一件就可以脱离单身了！', { duration: 3000, type: 'div' });

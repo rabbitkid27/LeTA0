@@ -140,7 +140,7 @@
     <script id="productListTpl" type="text/html">
         {{each data value}}
         <li>
-            <a href="#" class="product">
+            <div class="product">
                 <!-- {{value.pic[0].picAddr}} 图片是数组 取图片数组的第一个对象的图片的地址 -->
                 <img class="product-img" src="{{value.pic[0].picAddr}}" alt="">
                 <p class="product-name">{{value.proName}}</p>
@@ -151,7 +151,7 @@
                 <p class="product-buy">
                     <button type="button" class="mui-btn mui-btn-primary btn-buy" data-id="{{value.id}}">立即购买{{value.num}}</button>
                 </p>
-            </a>
+            </div>
         </li>
         {{/each}}
     </script>
