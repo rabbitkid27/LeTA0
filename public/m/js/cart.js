@@ -132,15 +132,18 @@ $(function () {
          };
          var html=template('editCarTpl',product);
         //  去除空格换行 ↓
-         html=html.replace(/[\r\n]/g,"");
+        html = html.replace(/[\r\n]/g, "");
          console.log(html);
         mui.confirm( html,'编辑商品', ['确定','取消'], function(e){    
             if(e.index==0){
                 $.ajax({
                     url: "/cart/updateCart",
-                    data: {id:product.id,
-                        size:$('.btn-size.active').data('size'),
-                        num:nui('.mui-numbox').numbox().getValue()},
+                    type:'post',
+                    data: {
+                        id: product.id, // 当前购物车id
+                        size: $('.btn-size.active').data('size'), // 当前选择尺码
+                        num: mui('.mui-numbox').numbox().getValue() //当前选择数量
+                    },
                     success: function (data) {
                         if(data.success){
                             queryCart();

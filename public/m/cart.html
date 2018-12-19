@@ -145,16 +145,16 @@
     <script id="editCarTpl" type="text/html">
         <li class="mui-table-view-cell product-size">
                 尺码： {{each productSize value}}
-                <button type="button" class="btn-size{{value == size ? 'active' : ''}}" data-size="{{value}}">{{value}}</button>
+                <button type="button" class="btn-size {{value == size ? 'active' : ''}}"  data-size="{{value}}">{{value}}</button>
                 {{/each}}
             </li>
             <li class="mui-table-view-cell">
                 数量：
-                <div class="mui-numbox" data-numbox-step='1' data-numbox-min='0' data-numbox-max='{{num}}'>
+                <div class="mui-numbox" data-numbox-step='1' data-numbox-min='0' data-numbox-max='{{productNum}}'>
                     <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
                     <input class="mui-numbox-input" type="number" />
                     <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
-                </div> 剩余：<span>{{num}}</span>件
+                </div> 剩余：<span>{{productNum}}</span>件
             </li>
     </script>
 

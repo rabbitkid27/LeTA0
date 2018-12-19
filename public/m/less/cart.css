@@ -173,6 +173,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+/* 订单区域样式 */
 #order {
   position: fixed;
   background-color: #fff;
@@ -189,6 +190,10 @@ body {
   font-weight: 600;
   color: red;
 }
+.mui-popup {
+  width: 3.2rem;
+}
+/* 确认框动态弹出来在页面最上面的不是谁的子元素 */
 .product-size {
   line-height: 0.38rem;
 }
